@@ -119,7 +119,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateRoleToUser(String username, String roleName) {
+    public void updateRoleOfUser(String username, String roleName) {
         User user = userRepository.findUserByUsername(username)
                 .orElseThrow(() -> new RuntimeException("User not found"));
         UserRole userRole = roleRepository.findByRoleName(roleName)

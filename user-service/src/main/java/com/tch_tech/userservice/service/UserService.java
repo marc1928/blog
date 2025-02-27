@@ -19,7 +19,7 @@ public interface UserService {
 
     void addRoleToUser(String username, String roleName);
     void deleteRoleFromUser(String username, String roleName);
-    void updateRoleToUser(String username, String roleName);
+    void updateRoleOfUser(String username, String roleName);
 
     UserRole addNewUserRole(UserRole userRole);
     Optional<UserRole> updateUserRole(Long id, UserRole userRole);
