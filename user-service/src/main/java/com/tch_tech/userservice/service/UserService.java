@@ -23,13 +23,14 @@ public interface UserService {
 
     UserRole addNewUserRole(UserRole userRole);
     Optional<UserRole> updateUserRole(Long id, UserRole userRole);
-    void deleteUserRole(UserRole userRole);
+    void deleteUserRole(Long id);
     Collection<UserRole> getUserRoles();
 
     Privilege addNewPrivilege(Privilege privilege);
     Optional<Privilege> updatePrivilege(Long id, Privilege privilege);
-    void deletePrivilege(Privilege privilege);
-    Collection<Privilege> getPrivileges();
+    void deletePrivilege(Long id);
+    Collection<Privilege> getAllPrivileges();
+    Collection<Privilege> getPrivileges(Long id);
 
     void addPrivilegeToRole(String privilegeName, String roleName);
     Collection<Privilege> getPrivilegesByRole(String roleName);

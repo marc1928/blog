@@ -12,7 +12,7 @@ import java.util.Collection;
 @Table(name = "privilege")
 public class Privilege {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String privilegeId;
+    private String Id;
     private String privilegeName;
     private String description;
     @ManyToMany

@@ -88,8 +88,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteUserRole(UserRole userRole) {
-        roleRepository.delete(userRole);
+    public void deleteUserRole(Long id){
+        roleRepository.deleteUserRoleById(id);
     }
 
     @Override
@@ -147,12 +147,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deletePrivilege(Privilege privilege) {
-        privilegeRepository.delete(privilege);
+    public void deletePrivilege(Long id) {
+        privilegeRepository.findPrivilegeById(id);
     }
 
     @Override
-    public Collection<Privilege> getPrivileges() {
+    public Collection<Privilege> getAllPrivileges() {
+        return privilegeRepository.findAll();
+    }
+
+    @Override
+    public Collection<Privilege> getPrivileges(Long id) {
         return privilegeRepository.findAll();
     }
 // ################################### privilege to role #############################################

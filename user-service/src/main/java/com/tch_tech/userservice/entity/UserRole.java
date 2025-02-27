@@ -11,7 +11,7 @@ import java.util.Collection;
 @Table(name = "roles")
 public class UserRole {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     @Column(nullable = false, unique = true)
     private String roleName;
     @ManyToMany
