@@ -14,6 +14,7 @@ public interface UserService {
     Optional<User> updateUser(Long id, User user);
     void deleteUserById(Long id);
     List<User> listAllUsers();
+    Optional<User> getUserById(Long id);
     Optional<User> loadUserByUsername(String userName);
 
     void addRoleToUser(String username, String roleName);

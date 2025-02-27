@@ -37,6 +37,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User> listAllUsers() {
+        return userRepository.findAll();
+    }
+
+    @Override
+    public Optional<User> getUserById(Long id) {
+        return userRepository.findById(id);
+    }
+
+    @Override
     public Optional<User> updateUser(Long id, User user) {
         return userRepository.findById(id).map(
           existingUser -> {
@@ -54,15 +64,12 @@ public class UserServiceImpl implements UserService {
         userRepository.deleteById(id);
     }
 
-    @Override
-    public List<User> listAllUsers() {
-        return userRepository.findAll();
-    }
 
     @Override
     public Optional<User> loadUserByUsername(String userName) {
         return userRepository.findUserByUsername(userName);
     }
+
 
  // ############################# Gestion des roles d####################################
     @Override
