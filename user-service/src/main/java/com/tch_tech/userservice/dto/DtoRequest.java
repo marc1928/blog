@@ -2,7 +2,9 @@ package com.tch_tech.userservice.dto;
 
 import lombok.*;
 
-@Getter @AllArgsConstructor @Setter @ToString @NoArgsConstructor
-public class PrivilegeRequest {
+@Data
+public class DtoRequest {
+    private  String username;
+    private String roleName;
     private String privilegeName;
 }
