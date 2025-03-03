@@ -3,8 +3,6 @@ package com.tch_tech.userservice.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.ArrayList;
-import java.util.Collection;
 
 @Entity
 @Getter @Setter @ToString @NoArgsConstructor

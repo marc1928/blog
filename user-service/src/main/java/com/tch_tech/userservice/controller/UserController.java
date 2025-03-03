@@ -1,14 +1,17 @@
 package com.tch_tech.userservice.controller;
 
+
 import com.tch_tech.userservice.dto.DtoRequest;
 import com.tch_tech.userservice.entity.User;
 import com.tch_tech.userservice.service.UserService;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Optional;
+
+import java.security.Principal;
+import java.util.*;
 
 @RestController
 @RequestMapping
@@ -26,6 +29,7 @@ public class UserController {
 
 // #################### Gestion des user ###########################
     @PostMapping("/users")
+    @PostAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<User> createUser(@RequestBody User user){
         logger.info("received request: {}", user);
         User userSaved = userService.addNewUser(user);
@@ -66,6 +70,13 @@ public class UserController {
         userService.updateRoleOfUser(dtoRequest.getUsername(), dtoRequest.getRoleName());
     }
 
-
+ // ########
+    @GetMapping(path = "/profile")
+    public Optional<User> profile(Principal principal) {
+        return userService.loadUserByUsername(principal.getName());
+    }
 
 }
+
+
+
