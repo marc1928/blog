@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Slf4j
 @RestController
-@RequestMapping("/api/v1/user-profiles") // Versionner l'API
+@RequestMapping("/api/profiles") // Versionner l'API
 public class UserProfilController {
     private final UserProfilService userProfilService;
 
@@ -31,7 +31,7 @@ public class UserProfilController {
     @GetMapping("/{profileId}")
     public ResponseEntity<UserProfile> getUserProfileById(@PathVariable Long profileId){
         log.info("Récupération du profil utilisateur avec ID: {}", profileId);
-        Optional<UserProfile> userProfile = userProfilService.getUserProfileById(profileId);
+        Optional<UserProfile> userProfile = userProfilService.getProfileById(profileId);
 
         return userProfile
                 .map(ResponseEntity::ok) // Si présent, renvoie 200 OK
@@ -42,7 +42,7 @@ public class UserProfilController {
     @DeleteMapping("/{profileId}")
     public ResponseEntity<Void> deleteUserProfileById(@PathVariable Long profileId){
         log.info("Suppression du profil utilisateur avec ID: {}", profileId);
-        userProfilService.deleteUserProfileById(profileId);
+        userProfilService.deleteProfileById(profileId);
         return ResponseEntity.ok().build();
     }
 
@@ -50,14 +50,14 @@ public class UserProfilController {
     @GetMapping
     public ResponseEntity<Iterable<UserProfile>> getAllUserProfil(){
         log.info("Récupération de tous les profils utilisateur.");
-        return ResponseEntity.ok(userProfilService.getAllUserProfil());
+        return ResponseEntity.ok(userProfilService.getAllProfil());
     }
 
     // Mettre à jour un profil utilisateur
     @PutMapping("/{profileId}")
     public ResponseEntity<UserProfile> updateUserProfil(@PathVariable Long profileId,@RequestBody UserProfile userProfile){
         log.info("Mise à jour du profil utilisateur ID: {}", profileId);
-        UserProfile updatedProfile = userProfilService.updateUserProfil(profileId, userProfile)
+        UserProfile updatedProfile = userProfilService.updateProfil(profileId, userProfile)
                 .orElseThrow(() -> new RuntimeException("UserProfile not found during update."));
         return ResponseEntity.ok(updatedProfile);
     }

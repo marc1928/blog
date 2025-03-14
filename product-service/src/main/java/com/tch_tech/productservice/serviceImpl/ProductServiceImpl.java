@@ -7,11 +7,13 @@ import com.tch_tech.productservice.repository.ProductRepository;
 import com.tch_tech.productservice.service.ProductService;
 import com.tch_tech.productservice.specification.ProductSpecifications;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 @Transactional
 public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
@@ -38,12 +40,12 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Optional<Product> getProductById(Long ProductId) {
-        return productRepository.findById(ProductId);
+        return productRepository.findByProductId(ProductId);
     }
 
     @Override
     public Optional<Product> updateProduct(Long productId, Product product) {
-        return productRepository.findById(productId).map(
+        return productRepository.findByProductId(productId).map(
                 existingProduct -> {
                     existingProduct.setProductName(product.getProductName());
                     existingProduct.setUnit(product.getUnit());
@@ -55,8 +57,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void deleteProductById(Long ProductId) {
-        productRepository.deleteById(ProductId);
+    public void deleteProduct(Long ProductId) {
+        productRepository.findByProductId(ProductId);
     }
 
     @Override

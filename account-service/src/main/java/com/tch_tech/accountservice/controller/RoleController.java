@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
 import java.util.Optional;
 
-@RequestMapping
+@RequestMapping("/api/roles")
 @RestController
 public class RoleController {
     private final RoleService roleService;
@@ -20,26 +20,26 @@ public class RoleController {
 
     }
 
-    @PostMapping("/roles")
+    @PostMapping
     public ResponseEntity<UserRole> createRole(@RequestBody UserRole userRole) {
         UserRole userRole1 = roleService.addNewUserRole(userRole);
         return ResponseEntity.ok(userRole1);
     }
-    @GetMapping("/roles")
+    @GetMapping
     public Collection<UserRole> getListRole() {
         return roleService.getUserRoles();
     }
 
-    @PutMapping("/roles/{id}")
+    @PutMapping("/{id}")
     public Optional<UserRole> updateUserRole(@PathVariable Long id, @RequestBody UserRole userRole) {
         return roleService.updateUserRole(id, userRole);
     }
-    @DeleteMapping("/roles/{id}")
+    @DeleteMapping("/{id}")
     public void deleteUserRole(@PathVariable Long id){
         roleService.deleteUserRole(id);
     }
 
-    @PostMapping("/roles/addPrivilegeToRoles")
+    @PostMapping("/privilegeToRole")
     public void privilegeToRole(@RequestBody DtoRequest dtoRequest){
         roleService.addPrivilegeToRole(dtoRequest.getRoleName(), dtoRequest.getPrivilegeName());
     }

@@ -1,13 +1,11 @@
 package com.tch_tech.accountservice.model.client_service;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-@Getter @Setter @AllArgsConstructor @NoArgsConstructor
+@Getter @Setter @ToString
 public class Address {
 
     private Long addressId;
+    private String address;
 
 }

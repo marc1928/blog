@@ -9,8 +9,8 @@ import java.util.Optional;
 @Service
 public interface UserProfilService {
     UserProfile createUserProfil(UserProfile userProfile);
-    List<UserProfile> getAllUserProfil();
-    Optional<UserProfile> getUserProfileById(Long profileId);
-    void deleteUserProfileById(Long profileId);
-    Optional<UserProfile> updateUserProfil(Long profileId, UserProfile userProfile);
+    List<UserProfile> getAllProfil();
+    Optional<UserProfile> getProfileById(Long profileId);
+    void deleteProfileById(Long profileId);
+    Optional<UserProfile> updateProfil(Long profileId, UserProfile userProfile);
 }

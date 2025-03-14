@@ -7,8 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
 @Entity
 @Getter @Setter @AllArgsConstructor @NoArgsConstructor
 public class UserProfile {
@@ -17,6 +15,7 @@ public class UserProfile {
     private Long profileId;
 
     private String firstName;
+
     private String lastName;
     private String phoneNumber;
     private String email;
@@ -24,10 +23,10 @@ public class UserProfile {
     @OneToOne(cascade = CascadeType.ALL)
     private Address address;
 
-    @OneToMany(mappedBy = "userProfile", cascade = CascadeType.ALL)
-    private List<VerificationDocument> verificationDocuments;
+//    @OneToMany(mappedBy = "userProfile", cascade = CascadeType.ALL)
+//    private List<VerificationDocument> verificationDocuments;
 
-    @Transient // Non stocké en base de données
-    private String userType; // Récupéré dynamiquement via Keycloak
+//    @Transient // Non stocké en base de données
+//    private String userType; // Récupéré dynamiquement via Keycloak
 }
 

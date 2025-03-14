@@ -9,6 +9,7 @@ import java.util.Collection;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/api/privileges")
 public class PrivilegeController {
     private final PrivilegeService privilegeService;
 
@@ -17,26 +18,26 @@ public class PrivilegeController {
 
     }
 
-    @PostMapping("/privileges")
+    @PostMapping
     public ResponseEntity<Privilege> createPrivilege(@RequestBody Privilege privilege) {
         Privilege privilegeSaved = privilegeService.addNewPrivilege(privilege);
         return ResponseEntity.ok(privilegeSaved);
     }
-    @PutMapping("/privileges/{id}")
+    @PutMapping("/{id}")
     public Optional<Privilege> updatePrivilege(@PathVariable Long id, @RequestBody Privilege privilege) {
         return privilegeService.updatePrivilege(id, privilege);
     }
-    @DeleteMapping("/privileges/{id}")
+    @DeleteMapping("/{id}")
     public void deletePrivilege(@PathVariable Long id) {
         privilegeService.deletePrivilege(id);
     }
 
-    @GetMapping("/privileges")
+    @GetMapping
     public Collection<Privilege> getListPrivilege() {
         return privilegeService.getAllPrivileges();
     }
 
-    @GetMapping("/privileges/by-id/{id}")
+    @GetMapping("/privilegeId/{id}")
     public Collection<Privilege> getListPrivilege(@PathVariable Long id) {
         return privilegeService.getPrivileges(id);
     }

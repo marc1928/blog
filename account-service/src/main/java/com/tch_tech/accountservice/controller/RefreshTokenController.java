@@ -6,10 +6,12 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tch_tech.accountservice.entity.Account;
+import com.tch_tech.accountservice.entity.UserRole;
 import com.tch_tech.accountservice.service.AccountService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
@@ -19,6 +21,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
+@RequestMapping("/api/refreshToken")
 public class RefreshTokenController {
     private final AccountService accountService;
 
@@ -26,7 +29,7 @@ public class RefreshTokenController {
         this.accountService = accountService;
     }
 
-    @GetMapping(path = "/refreshToken")
+    @GetMapping
     public void refreshToken(HttpServletRequest request, HttpServletResponse response) {
         String authToken = request.getHeader("Authorization");
         if (authToken != null && authToken.startsWith("Bearer ")) {
@@ -43,7 +46,7 @@ public class RefreshTokenController {
                         .withSubject(user.get().getUsername())
                         .withExpiresAt(new Date(System.currentTimeMillis() + 8 * 60 * 1000))
                         .withIssuer(request.getRequestURL().toString())
-                        .withClaim("roles", user.get().getUserRole().stream().map(r -> r.getRoleName()).collect(Collectors.toList()))
+                        .withClaim("roles", user.get().getUserRole().stream().map(UserRole::getRoleName).collect(Collectors.toList()))
                                 .sign(algorithm);
                 Map<String, String> idToken = new HashMap<>();
                 idToken.put("access-token", jwtAccessToken);

@@ -13,12 +13,23 @@ spring:
       hibernate:
         format_sql: true
     open-in-view: false
-#  cloud:
-#    consul:
-#      host: localhost
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        enabled: true
+        register: true
+        service-name: ${spring.application.name}
+        instance-id: ${spring.application.name}:${random.value}
+        prefer-ip-address: true
+#    gateway:
 #      discovery:
-#        enabled: false
-#      port: 8500
+#        locator:
+#          enabled: true           # Active la découverte automatique
+#          lower-case-service-id: true
+
+
 
 server:
   port: 8083

@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Slf4j
 @RestController
-@RequestMapping("api/v1/products")
+@RequestMapping("/api/products")
 public class ProductController {
     private final ProductService productService;
 
@@ -49,7 +49,7 @@ public class ProductController {
     }
     @DeleteMapping("/{productId}")
     public void deleteProductById(@PathVariable Long productId){
-        productService.deleteProductById(productId);
+        productService.deleteProduct(productId);
     }
     @PostMapping("/add-category")
     public void addCategoryToProduct(@RequestBody DtoRequest dtoRequest){

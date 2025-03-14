@@ -7,9 +7,11 @@ import jakarta.persistence.Id;
 import lombok.*;
 
 @Entity
-@Getter @Setter @ToString @AllArgsConstructor @NoArgsConstructor
+@Getter @Setter @ToString @AllArgsConstructor @NoArgsConstructor @Builder
 public class Category {
+
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long categoryId;
+
     private String categoryName;
 }
